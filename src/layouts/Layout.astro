@@ -1,0 +1,44 @@
+---
+import '../styles/global.css';
+
+export interface Props {
+	title: string;
+	description?: string;
+}
+
+const { title, description = "Premium Olivenöl aus Kosovo - Höchste Qualität direkt vom Produzenten" } = Astro.props;
+---
+
+<!doctype html>
+<html lang="de" class="scroll-smooth">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="description" content={description} />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+		<meta name="generator" content={Astro.generator} />
+		<title>{title}</title>
+		
+		<!-- Preload wichtige Schriftarten -->
+		<link rel="preconnect" href="https://fonts.googleapis.com">
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+		<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+	</head>
+	<body class="bg-stone-50 text-stone-900 font-inter antialiased">
+		<slot />
+	</body>
+</html>
+
+<style>
+	html {
+		font-family: 'Inter', system-ui, sans-serif;
+	}
+	
+	.font-playfair {
+		font-family: 'Playfair Display', serif;
+	}
+	
+	.font-inter {
+		font-family: 'Inter', sans-serif;
+	}
+</style> 

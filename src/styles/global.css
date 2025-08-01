@@ -1,0 +1,213 @@
+@import 'tailwindcss';
+
+/* Custom Styles für Olive Gold Shop */
+
+/* Scrollbar Styling */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #f1f5f9;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #d97706;
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #b45309;
+}
+
+/* Smooth Animations */
+* {
+  scroll-behavior: smooth;
+}
+
+/* Custom Utilities */
+.font-playfair {
+  font-family: 'Playfair Display', serif;
+}
+
+.font-inter {
+  font-family: 'Inter', sans-serif;
+}
+
+/* Custom Gradient Backgrounds */
+.gradient-olive {
+  background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%);
+}
+
+.gradient-olive-dark {
+  background: linear-gradient(135deg, #d97706 0%, #b45309 100%);
+}
+
+/* Custom Box Shadows */
+.shadow-olive {
+  box-shadow: 0 10px 25px -5px rgba(217, 119, 6, 0.1), 0 10px 10px -5px rgba(217, 119, 6, 0.04);
+}
+
+.shadow-olive-lg {
+  box-shadow: 0 25px 50px -12px rgba(217, 119, 6, 0.25);
+}
+
+/* Custom Button Hover Effects */
+.btn-olive {
+  @apply bg-amber-600 text-white px-6 py-3 rounded-full font-semibold transition-all duration-300 transform hover:scale-105 hover:bg-amber-700 hover:shadow-lg;
+}
+
+.btn-olive-outline {
+  @apply border-2 border-amber-600 text-amber-600 px-6 py-3 rounded-full font-semibold transition-all duration-300 hover:bg-amber-600 hover:text-white;
+}
+
+/* Loading Animation */
+.loading {
+  position: relative;
+  overflow: hidden;
+}
+
+.loading::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(255, 255, 255, 0.2),
+    transparent
+  );
+  animation: loading 1.5s infinite;
+}
+
+@keyframes loading {
+  0% {
+    left: -100%;
+  }
+  100% {
+    left: 100%;
+  }
+}
+
+/* Fade In Animation */
+.fade-in {
+  animation: fadeIn 0.5s ease-in-out;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Parallax Background */
+.parallax {
+  background-attachment: fixed;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+/* Text Selection */
+::selection {
+  background-color: rgba(245, 158, 11, 0.3);
+  color: #78350f;
+}
+
+::-moz-selection {
+  background-color: rgba(245, 158, 11, 0.3);
+  color: #78350f;
+}
+
+/* Focus Styles */
+.focus-olive:focus {
+  @apply ring-2 ring-amber-500 ring-offset-2 outline-none;
+}
+
+/* Product Card Hover Effects */
+.product-card {
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.product-card:hover {
+  transform: translateY(-8px);
+}
+
+/* Custom Grid Layouts */
+.masonry {
+  columns: 3;
+  column-gap: 2rem;
+}
+
+.masonry > * {
+  break-inside: avoid;
+  margin-bottom: 2rem;
+}
+
+@media (max-width: 768px) {
+  .masonry {
+    columns: 1;
+  }
+}
+
+@media (max-width: 1024px) and (min-width: 769px) {
+  .masonry {
+    columns: 2;
+  }
+}
+
+/* Image Zoom Effect */
+.zoom-hover {
+  overflow: hidden;
+}
+
+.zoom-hover img {
+  transition: transform 0.3s ease;
+}
+
+.zoom-hover:hover img {
+  transform: scale(1.1);
+}
+
+/* Notification Styles */
+.notification {
+  @apply fixed top-4 right-4 bg-white border-l-4 border-amber-500 p-4 rounded-lg shadow-lg z-50 transform translate-x-full transition-transform duration-300;
+}
+
+.notification.show {
+  @apply translate-x-0;
+}
+
+/* Progress Bar */
+.progress-bar {
+  @apply w-full bg-stone-200 rounded-full h-2;
+}
+
+.progress-fill {
+  @apply bg-gradient-to-r from-amber-500 to-amber-600 h-2 rounded-full transition-all duration-300 ease-out;
+}
+
+/* Custom Modal Overlay */
+.modal-overlay {
+  @apply fixed inset-0 bg-black/50 flex items-center justify-center z-50 opacity-0 pointer-events-none transition-opacity duration-300;
+}
+
+.modal-overlay.active {
+  @apply opacity-100 pointer-events-auto;
+}
+
+.modal-content {
+  @apply bg-white rounded-2xl p-6 max-w-lg w-full mx-4 transform scale-95 transition-transform duration-300;
+}
+
+.modal-overlay.active .modal-content {
+  @apply scale-100;
+}

@@ -1,0 +1,263 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+
+// Sample products data
+const products = [
+  {
+    id: 1,
+    name: "Extra Virgine Classic",
+    description: "Unser Klassiker mit ausgewogenem, fruchtigen Geschmack. Perfect für Salate und mediterrane Küche.",
+    price: 24.90,
+    originalPrice: null,
+    image: "classic",
+    category: "Classic",
+    features: ["Kaltgepresst", "500ml", "Aus Kreta"],
+    color: "amber"
+  },
+  {
+    id: 2,
+    name: "Bio Premium Reserve",
+    description: "Biologisch angebaut und handverlesen. Intensiver Geschmack mit würzigen Noten und pfeffrigen Abgang.",
+    price: 32.90,
+    originalPrice: null,
+    image: "bio",
+    category: "Bio",
+    features: ["Bio-zertifiziert", "500ml", "Handverlesen"],
+    color: "green"
+  },
+  {
+    id: 3,
+    name: "Limited Edition 2024",
+    description: "Limitierte Auflage aus der ersten Ernte. Exklusiver Geschmack für Kenner und Liebhaber.",
+    price: 45.90,
+    originalPrice: null,
+    image: "limited",
+    category: "Limited",
+    features: ["Erste Ernte", "500ml", "Limitiert"],
+    color: "purple"
+  },
+  {
+    id: 4,
+    name: "Familia Tradition",
+    description: "Nach alter Familientradition produziert. Mild und fruchtig mit nussigen Noten.",
+    price: 28.90,
+    originalPrice: 34.90,
+    image: "familia",
+    category: "Classic",
+    features: ["Familienrezept", "750ml", "Mild"],
+    color: "amber"
+  },
+  {
+    id: 5,
+    name: "Intenso Robust",
+    description: "Kräftiges Olivenöl mit intensivem Geschmack. Ideal zum Braten und für deftige Gerichte.",
+    price: 26.90,
+    originalPrice: null,
+    image: "intenso",
+    category: "Intense",
+    features: ["Intensiv", "500ml", "Zum Braten"],
+    color: "red"
+  },
+  {
+    id: 6,
+    name: "Delicato Light",
+    description: "Mildes Olivenöl für Feinschmecker. Besonders sanft und bekömmlich für jeden Tag.",
+    price: 22.90,
+    originalPrice: null,
+    image: "delicato",
+    category: "Mild",
+    features: ["Sehr mild", "500ml", "Täglich"],
+    color: "yellow"
+  }
+];
+
+const categories = ["Alle", "Classic", "Bio", "Limited", "Intense", "Mild"];
+---
+
+<Layout title="Shop - Premium Olivenöl | Olive Gold">
+  <Header />
+  
+  <main>
+    <!-- Page Header -->
+    <section class="bg-gradient-to-r from-stone-100 to-amber-50 py-16">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="text-center">
+          <h1 class="font-playfair text-4xl md:text-6xl font-bold text-stone-900 mb-6">
+            Unser Premium Sortiment
+          </h1>
+          <p class="text-xl text-stone-600 max-w-3xl mx-auto">
+            Entdecken Sie unsere exklusive Auswahl an hochwertigen Olivenölen - 
+            jedes Produkt ein Meisterwerk griechischer Tradition.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Filter Section -->
+    <section class="py-8 bg-white border-b border-stone-200">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="flex flex-col md:flex-row justify-between items-center space-y-4 md:space-y-0">
+          <!-- Category Filter -->
+          <div class="flex flex-wrap gap-2">
+            {categories.map((category) => (
+              <button class="px-4 py-2 rounded-full border border-stone-300 text-stone-700 hover:bg-amber-600 hover:text-white hover:border-amber-600 transition-all duration-200 filter-btn" data-category={category}>
+                {category}
+              </button>
+            ))}
+          </div>
+          
+          <!-- Sort & Results -->
+          <div class="flex items-center space-x-4">
+            <span class="text-stone-600">{products.length} Produkte</span>
+            <select class="border border-stone-300 rounded-lg px-3 py-2 text-stone-700 focus:ring-2 focus:ring-amber-500 focus:border-amber-500">
+              <option>Sortieren nach</option>
+              <option>Preis aufsteigend</option>
+              <option>Preis absteigend</option>
+              <option>Alphabetisch</option>
+              <option>Beliebtheit</option>
+            </select>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Products Grid -->
+    <section class="py-16 bg-stone-50">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8" id="products-grid">
+          {products.map((product) => (
+            <div class={`bg-white rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 overflow-hidden group product-card`} data-category={product.category}>
+              <!-- Product Image -->
+              <div class={`aspect-square bg-gradient-to-br from-${product.color}-100 to-${product.color}-200 relative overflow-hidden`}>
+                {product.originalPrice && (
+                  <div class="absolute top-4 right-4 bg-red-500 text-white px-3 py-1 rounded-full text-sm font-semibold z-10">
+                    Sale
+                  </div>
+                )}
+                <div class={`absolute inset-0 bg-gradient-to-t from-${product.color}-600/20 to-transparent group-hover:from-${product.color}-600/30 transition-colors duration-300`}></div>
+                <div class="absolute inset-0 flex items-center justify-center">
+                  <div class={`w-32 h-48 bg-gradient-to-b from-${product.color}-700 to-${product.color}-800 rounded-lg shadow-2xl transform group-hover:scale-105 transition-transform duration-300 relative`}>
+                    <div class={`absolute top-4 left-1/2 transform -translate-x-1/2 w-16 h-20 bg-${product.color}-100 rounded-lg flex items-center justify-center`}>
+                      <span class={`font-playfair text-${product.color}-800 font-bold text-lg`}>
+                        {product.image === "classic" ? "OG" : 
+                         product.image === "bio" ? "BIO" :
+                         product.image === "limited" ? "LTD" :
+                         product.image === "familia" ? "FAM" :
+                         product.image === "intenso" ? "INT" : "DEL"}
+                      </span>
+                    </div>
+                  </div>
+                </div>
+                
+                <!-- Quick View Button -->
+                <div class="absolute inset-0 bg-black/50 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
+                  <button class="bg-white text-stone-900 px-6 py-2 rounded-full font-semibold hover:bg-stone-100 transition-colors duration-200 transform translate-y-4 group-hover:translate-y-0">
+                    Schnellansicht
+                  </button>
+                </div>
+              </div>
+
+              <!-- Product Info -->
+              <div class="p-6">
+                <div class="flex items-start justify-between mb-2">
+                  <h3 class="font-playfair text-xl font-semibold text-stone-900 group-hover:text-amber-700 transition-colors duration-200">
+                    {product.name}
+                  </h3>
+                  <div class="flex flex-col items-end">
+                    <span class="font-bold text-xl text-amber-700">€{product.price.toFixed(2)}</span>
+                    {product.originalPrice && (
+                      <span class="text-sm text-stone-500 line-through">€{product.originalPrice.toFixed(2)}</span>
+                    )}
+                  </div>
+                </div>
+                
+                <p class="text-stone-600 text-sm mb-4 line-clamp-2">
+                  {product.description}
+                </p>
+                
+                <!-- Features -->
+                <div class="flex flex-wrap gap-1 mb-4">
+                  {product.features.map((feature) => (
+                    <span class="text-xs bg-stone-100 text-stone-600 px-2 py-1 rounded-full">
+                      {feature}
+                    </span>
+                  ))}
+                </div>
+                
+                <!-- Add to Cart Button -->
+                <button class="w-full bg-amber-600 text-white py-3 rounded-full font-semibold hover:bg-amber-700 transition-colors duration-200 transform hover:scale-105">
+                  In den Warenkorb
+                </button>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <!-- Newsletter Section -->
+    <section class="py-16 bg-gradient-to-r from-amber-600 to-amber-700">
+      <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+        <h2 class="font-playfair text-3xl md:text-4xl font-bold text-white mb-4">
+          Bleiben Sie informiert
+        </h2>
+        <p class="text-amber-100 text-lg mb-8">
+          Erhalten Sie exklusive Angebote und Neuigkeiten über unsere Premium Olivenöle.
+        </p>
+        <div class="flex flex-col sm:flex-row gap-4 max-w-md mx-auto">
+          <input 
+            type="email" 
+            placeholder="Ihre E-Mail Adresse" 
+            class="flex-1 px-4 py-3 rounded-full text-stone-900 focus:outline-none focus:ring-2 focus:ring-white"
+          >
+          <button class="bg-white text-amber-700 px-8 py-3 rounded-full font-semibold hover:bg-amber-50 transition-colors duration-200">
+            Anmelden
+          </button>
+        </div>
+      </div>
+    </section>
+  </main>
+  
+  <Footer />
+</Layout>
+
+<script>
+  // Filter functionality
+  document.addEventListener('DOMContentLoaded', function() {
+    const filterButtons = document.querySelectorAll('.filter-btn');
+    const productCards = document.querySelectorAll('.product-card');
+    
+    filterButtons.forEach(button => {
+      button.addEventListener('click', function() {
+        const category = this.getAttribute('data-category');
+        
+        // Update active button
+        filterButtons.forEach(btn => btn.classList.remove('bg-amber-600', 'text-white', 'border-amber-600'));
+        this.classList.add('bg-amber-600', 'text-white', 'border-amber-600');
+        
+        // Filter products
+        productCards.forEach(card => {
+          if (category === 'Alle' || card.getAttribute('data-category') === category) {
+            card.style.display = 'block';
+          } else {
+            card.style.display = 'none';
+          }
+        });
+      });
+    });
+    
+    // Set "Alle" as active by default
+    filterButtons[0].classList.add('bg-amber-600', 'text-white', 'border-amber-600');
+  });
+</script>
+
+<style>
+  .line-clamp-2 {
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+</style> 
