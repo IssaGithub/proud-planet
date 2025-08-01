@@ -4,13 +4,9 @@ import tailwind from '@astrojs/tailwind';
 
 // https://astro.build/config
 export default defineConfig({
-  // Für lokale Entwicklung auskommentiert
-  // site: 'https://USERNAME.github.io', 
-  // base: '/REPOSITORY_NAME', 
-  
-  // Für GitHub Pages Deployment, ersetzen Sie die Kommentare mit:
-  // site: 'https://IHR_USERNAME.github.io',
-  // base: '/IHR_REPOSITORY_NAME',
+  // GitHub Pages Konfiguration (aktiviert für Deployment)
+  site: 'https://izayt.github.io', 
+  base: '/Olive_Gashi', 
   
   output: 'static',
   integrations: [tailwind()]
