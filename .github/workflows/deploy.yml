@@ -1,9 +1,9 @@
 name: Deploy to GitHub Pages
 
 on:
-  # Trigger the workflow every time you push to the `main` branch
+  # Trigger the workflow every time you push to the `master` branch
   push:
-    branches: [ main ]
+    branches: [ master ]
   # Allows you to run this workflow manually from the Actions tab on GitHub.
   workflow_dispatch:
 
@@ -23,7 +23,7 @@ jobs:
       - name: Install, build, and upload your site
         uses: withastro/action@v2
         with:
-          path: ./proud-planet # Das Stammverzeichnis Ihres Astro-Projekts im Repository.
+          path: . # Das Stammverzeichnis Ihres Astro-Projekts im Repository.
           node-version: 20 # Die spezifische Version von Node, die zum Erstellen Ihrer Site verwendet werden soll.
           package-manager: npm@latest # Der Node-Paketmanager, der zum Installieren von Abhängigkeiten und zum Erstellen Ihrer Site verwendet werden soll.
 
